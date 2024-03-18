@@ -5,7 +5,7 @@ jobs:
 # pwd /home/garion/actions-runner/_work/ticketsrus-garion-luris/ticketsrus-garion-luris
 
   Pipeline:
-    runs-on: garion-runner
+    runs-on: self-hosted 
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET SDK
