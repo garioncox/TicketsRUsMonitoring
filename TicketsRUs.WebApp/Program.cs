@@ -33,7 +33,7 @@ builder.Services.AddHealthChecks();
 builder.Services.AddLogging();
 
 const string serviceName = "tickets";
-const string serviceVersion = "1.0.0";
+const string otelEndpoint = "http://otel-collector:4317/";
 
 builder.Logging.AddOpenTelemetry(options =>
 {
@@ -42,7 +42,7 @@ builder.Logging.AddOpenTelemetry(options =>
             ResourceBuilder.CreateDefault()
                 .AddService(serviceName))
         .AddOtlpExporter(o =>
-            o.Endpoint = new Uri("http://otel-collector:4317/"));
+            o.Endpoint = new Uri(otelEndpoint));
     //.AddConsoleExporter();
 });
 
@@ -55,13 +55,13 @@ builder.Services.AddOpenTelemetry()
         .AddAspNetCoreInstrumentation()
         //.AddConsoleExporter()
         .AddOtlpExporter(o =>
-            o.Endpoint = new Uri("http://otel-collector:4317/")))
+            o.Endpoint = new Uri(otelEndpoint)))
     .WithMetrics(metrics => metrics
         .AddAspNetCoreInstrumentation()
         .AddMeter(Metrics.Name)
         .AddConsoleExporter()
         .AddOtlpExporter(o =>
-            o.Endpoint = new Uri("http://otel-collector:4317/")));
+            o.Endpoint = new Uri(otelEndpoint)));
 
 
 

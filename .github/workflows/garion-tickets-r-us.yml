@@ -21,7 +21,7 @@ jobs:
     - name: Docker Down
       run: |
           cd ./garion-staging 
-          docker compose down -v 
+          docker compose down -v
     - name: Clone Repo
       run: |
         cd ..
