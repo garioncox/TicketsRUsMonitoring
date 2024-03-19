@@ -112,6 +112,16 @@ services:
     networks:
       otel:
 
+  proxy:
+    image: nginx
+    container_name: garion-proxy
+    ports:
+      - 5467:80
+    volumes:
+      - ./nginx-default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      otel:
+      
 networks:
   otel:
 
