@@ -35,7 +35,6 @@ builder.Services.AddLogging();
 const string serviceName = "tickets";
 const string otelEndpoint = "http://otel-collector:4317/";
 
-
 builder.Logging.AddOpenTelemetry(options =>
 {
     options
