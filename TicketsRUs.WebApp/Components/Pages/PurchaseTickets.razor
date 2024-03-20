@@ -116,6 +116,7 @@
         qrCode = $"data:image;base64,{Convert.ToBase64String(qrCodeArr)}";
     }
 
+
     private void SaveToPng(byte[] arr, string id)
     {
         using (Image image = Image.FromStream(new MemoryStream(arr)))
