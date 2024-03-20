@@ -39,11 +39,10 @@ builder.Logging.AddOpenTelemetry(options =>
 {
     options
         .SetResourceBuilder(
-            ResourceBuilder.CreateDefault()
-                .AddService(serviceName))
+            ResourceBuilder.CreateDefault().AddService(serviceName))
         .AddOtlpExporter(o =>
-            o.Endpoint = new Uri(otelEndpoint));
-    //.AddConsoleExporter();
+            o.Endpoint = new Uri(otelEndpoint))
+        .AddConsoleExporter();
 });
 
 builder.Services.AddOpenTelemetry()

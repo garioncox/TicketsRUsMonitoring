@@ -22,14 +22,16 @@ else
 @code {
     bool loaded = false;
 
-    protected override async void OnInitialized()
+    protected override void OnInitialized()
     {
-        log.LogInformation("logged the home page");
+        log.LogInformation("garion-logger: logged the home page initialization");
 
         Metrics.countGreetings.Add(3);
         using var myActivity = Traces.MyTrace.StartActivity("MyTrace");
         using var myActivity2 = Traces.MyTrace2.StartActivity("MyTrace2");
 
         loaded = true;
+
+        log.LogInformation("garion-logger: traces and metrics started appropriately.");
     }
 }

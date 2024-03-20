@@ -2,6 +2,7 @@
 @inject ITicketService service
 @inject NavigationManager Navigation
 @rendermode InteractiveServer
+@inject ILogger<Home> log
 
 <PageTitle>Events</PageTitle>
 
@@ -23,7 +24,7 @@
                 <th scope="row">@e.Id</th>
                 <td>@e.Name</td>
                 <td>@e.StartTime</td>
-                <td><button class="btn btn-success" @onclick="() => { BuyTicket(e.Id); }">Buy Ticket</button></td>
+                <td><button class="btn btn-success" @onclick="() => { BuyTicket(e.Id); LogPurchase(e.Id, e.Name); }">Buy Ticket</button></td>
             </tr>
         }
     </tbody>
@@ -35,12 +36,20 @@
 
     protected override async Task OnInitializedAsync()
     {
+        log.LogInformation($"garion-logger: loading events page...)");
+
         controller = new(service);
         events = (await controller.GetAllAvailableEvents()).ToList();
+
+        log.LogInformation($"garion-logger: successfully loaded events.)");
     }
 
     public void BuyTicket(int id)
     {
         Navigation.NavigateTo($"purchase/{id}");
+    }
+
+    public void LogPurchase(int id, string name) {
+        log.LogInformation($"garion-logger: navingating to purchase ticket page for event {name} (ID: {id})");
     }
 }

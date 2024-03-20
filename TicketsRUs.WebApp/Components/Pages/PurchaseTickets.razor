@@ -5,6 +5,7 @@
 @inject ITicketService service
 @inject IEmailService _emailservice
 @rendermode InteractiveServer
+@inject ILogger<Home> log
 
 <PageTitle>Purchase</PageTitle>
 
@@ -81,6 +82,7 @@
         isError = false;
         errorString = "";
 
+        log.LogInformation($"garion-logger: validating email for purchase...)");
         if (!IsValidEmail())
         {
             isError = true;
@@ -88,6 +90,8 @@
             StateHasChanged();
             return;
         }
+        log.LogInformation($"garion-logger: email in proper format!)");
+
 
         Ticket t = await controller.CreateTicket(Convert.ToInt32(Event_Id));
         GenerateQrFor(t);
