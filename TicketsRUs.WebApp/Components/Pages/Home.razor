@@ -24,7 +24,7 @@ else
 
     protected override void OnInitialized()
     {
-        log.LogInformation("garion-logger: logged the home page initialization");
+        LogStartupMessage(log, "homePage");
 
         StartMetrics();
 
@@ -40,9 +40,9 @@ else
     {
         Metrics.countGreetings.Add(3);
         Metrics.upDownCountGreetings.Add(3);
-        // Metrics.observableCountGreetings.ob;
-        // Metrics.observableUpDownCountGreetings.;
-        // Metrics.observableGaugeGreetings.;
         Metrics.histogramGreetings.Record(6);
     }
+
+    [LoggerMessage(Level = LogLevel.Information, Message = "Somebody hit this application {someAppicationName}")]
+    static partial void LogStartupMessage(ILogger logger, string someAppicationName);
 }

@@ -29,16 +29,16 @@ public static class Metrics
 
     private static int GetGreetingsCount()
     {
-        throw new NotImplementedException();
+        return 1;
     }
 
     private static int GetUpDownGreetingsCount()
     {
-        throw new NotImplementedException();
+        return 2;
     }
 
     private static int GetObservableGreetingsCount()
     {
-        throw new NotImplementedException();
+        return 3;
     }
 }
