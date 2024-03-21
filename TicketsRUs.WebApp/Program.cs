@@ -57,7 +57,12 @@ builder.Services.AddOpenTelemetry()
             o.Endpoint = new Uri(otelEndpoint)))
     .WithMetrics(metrics => metrics
         .AddAspNetCoreInstrumentation()
-        .AddMeter(Metrics.Name)
+        .AddMeter(Metrics.Counter_Name)
+        .AddMeter(Metrics.UpDownCounter_Name)
+        .AddMeter(Metrics.ObservableCounter_Name)
+        .AddMeter(Metrics.ObservableUpDownCounter_Name)
+        .AddMeter(Metrics.ObservableGauge_Name)
+        .AddMeter(Metrics.Histogram_Name)
         .AddConsoleExporter()
         .AddOtlpExporter(o =>
             o.Endpoint = new Uri(otelEndpoint)));
