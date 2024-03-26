@@ -1,7 +1,10 @@
 ﻿@page "/purchase/{Event_Id}"
+
 @using TicketsRUs.WebApp
 @using System.Drawing
 @using System.Drawing.Imaging;
+@using TicketsRUs.WebApp.Telemetry.Metrics;
+
 @inject ITicketService service
 @inject IEmailService _emailservice
 @rendermode InteractiveServer
@@ -92,6 +95,7 @@
         }
         log.LogInformation($"garion-logger: email in proper format!)");
 
+        Metrics.purchasesCount.Add(1);
 
         Ticket t = await controller.CreateTicket(Convert.ToInt32(Event_Id));
         GenerateQrFor(t);

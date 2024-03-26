@@ -34,6 +34,7 @@ services:
     networks:
       otel:
 
+
   prometheus:
     # https://github.com/prometheus/prometheus/releases
     image: prom/prometheus:v2.43.0

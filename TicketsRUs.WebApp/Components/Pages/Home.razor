@@ -31,18 +31,17 @@ else
         using var myActivity = Traces.MyTrace.StartActivity("MyTrace");
         using var myActivity2 = Traces.MyTrace2.StartActivity("MyTrace2");
 
-        loaded = true;
-
         log.LogInformation("garion-logger: traces and metrics started appropriately.");
+
+        loaded = true;
     }
 
     private void StartMetrics()
     {
-        Metrics.countGreetings.Add(3);
-        Metrics.upDownCountGreetings.Add(3);
-        // Metrics.observableCountGreetings.ob;
-        // Metrics.observableUpDownCountGreetings.;
-        // Metrics.observableGaugeGreetings.;
-        Metrics.histogramGreetings.Record(6);
+        DummyMetrics.countGreetings.Add(3);
+        DummyMetrics.upDownCountGreetings.Add(3);
+        DummyMetrics.histogramGreetings.Record(6);
+
+        Metrics.homePageAccessesCount.Add(1);
     }
 }
