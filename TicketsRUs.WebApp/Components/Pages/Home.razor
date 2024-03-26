@@ -38,17 +38,11 @@ else
 
     private void StartMetrics()
     {
-<<<<<<< HEAD
         DummyMetrics.countGreetings.Add(3);
         DummyMetrics.upDownCountGreetings.Add(3);
         DummyMetrics.histogramGreetings.Record(6);
 
         Metrics.homePageAccessesCount.Add(1);
-=======
-        Metrics.countGreetings.Add(3);
-        Metrics.upDownCountGreetings.Add(3);
-        Metrics.histogramGreetings.Record(6);
->>>>>>> 181ba9ca141986aea532f49bc903f6fdecb456bb
     }
 
     [LoggerMessage(Level = LogLevel.Information, Message = "Somebody hit this application {someAppicationName}")]
