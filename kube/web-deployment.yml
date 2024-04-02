@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: garion-1
+  name: garion-blazor-web-deployment
+  labels:
+    app: garion-blazor-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: garion-blazor-web
+  template:
+    metadata:
+      labels:
+        app: garion-blazor-web
+    spec:
+      containers:
+      - name: garion-blazor-web
+        image: 144.17.92.15:5000/garion/blazor-web:1
+        ports:
+        - containerPort: 80
