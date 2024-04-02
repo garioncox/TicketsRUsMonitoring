@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: garion-blazor-web
-        image: 144.17.92.15:5000/garion-1/blazor-web:1
+        image: 144.17.92.12:5000/garion-1/blazor-web:1
         ports:
         - containerPort: 80
