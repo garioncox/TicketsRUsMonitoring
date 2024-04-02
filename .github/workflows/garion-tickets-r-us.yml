@@ -33,7 +33,7 @@ jobs:
     - name: Docker Up
       run: |
         # cd ./garion-staging 
-        docker build -t 144.17.92.12:5000/garion-1/blazor-web:1 .
+        docker build -t 144.17.92.12144.17.92.12:5000/garion-1/blazor-web:1 .
         docker push 144.17.92.12:5000/garion-1/blazor-web:1
         kubectl apply -f kube/
         # docker compose up --build -d
