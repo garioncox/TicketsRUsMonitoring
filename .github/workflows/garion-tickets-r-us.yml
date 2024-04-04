@@ -39,7 +39,8 @@ jobs:
       run: |
         docker build -t 144.17.92.12:5000/garion-1/blazor-web:1 .
         docker push 144.17.92.12:5000/garion-1/blazor-web:1
-        kubectl -n garion-1 create configmap blazor-web-postgres-init --from-file=../init.sql
+        cd ../
+        kubectl -n garion-1 create configmap blazor-web-postgres-init --from-file=init.sql
         kubectl apply -f kube/
 
     - uses: actions/checkout@master
