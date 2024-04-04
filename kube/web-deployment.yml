@@ -20,3 +20,6 @@ spec:
         image: 144.17.92.12:5000/garion-1/blazor-web:1
         ports:
         - containerPort: 8080
+        env:
+        - name: MYDATABASECONNECTIONSTRING
+          value: db=server=gariondb;user id=postgres;database=postgres;password=password;
