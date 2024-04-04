@@ -18,10 +18,10 @@ jobs:
         # docker run -it --rm -v $(pwd):/app -w mcr.microsoft.com/dotnet/sdk:8.0 dotnet format --verify-no-changes --severity warn
         dotnet test
 
-    - name: Docker Down
-      run: |
-          cd ./garion-staging 
-          docker compose down -v
+    # - name: Docker Down
+    #   run: |
+    #       cd ./garion-staging 
+    #       docker compose down -v
     - name: Clone Repo
       run: |
         cd ..
@@ -30,13 +30,17 @@ jobs:
     - name: Lint 
       run: |
         # dotnet format --verify-no-changes # --severity warn
-    - name: Docker Up
-      run: |
+    # - name: Docker Up
+    #   run: |
         # cd ./garion-staging 
+
+        # docker compose up --build -d
+    - name: Kubectl Up
+      run: |
         docker build -t 144.17.92.12:5000/garion-1/blazor-web:1 .
         docker push 144.17.92.12:5000/garion-1/blazor-web:1
+        kubectl -n garion-1 create configmap blazor-web-postgres-init --from-file=init.sql
         kubectl apply -f kube/
-        # docker compose up --build -d
 
     - uses: actions/checkout@master
     - name: Microsoft Teams Notification
