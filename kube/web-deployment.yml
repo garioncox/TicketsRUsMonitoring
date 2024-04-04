@@ -21,7 +21,7 @@ spec:
         ports:
         - containerPort: 8080
         env:
-        - name: DevelopmentMode
-          value: ASPNETCORE_ENVIRONMENT=Development
-        - name: MYDATABASECONNECTIONSTRING
-          value: db=server=gariondb;user id=postgres;database=postgres;password=password;
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: db
+          value: server=blazor-web-db-service;user id=postgres;database=gariondb;password=password
