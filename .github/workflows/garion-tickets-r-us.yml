@@ -35,6 +35,10 @@ jobs:
         # cd ./garion-staging 
 
         # docker compose up --build -d
+    - name: Kubectl down
+      run: |
+        kubectl -n garion-1 delete svc blazor-web-db-service
+        kubectl -n garion-1 delete ingress garion-blazor-ingress
     - name: Kubectl Up
       run: |
         docker build -t 144.17.92.12:5000/garion-1/blazor-web:1 .
