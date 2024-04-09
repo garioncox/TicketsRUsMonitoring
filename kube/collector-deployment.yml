@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: garion-1
+  name: garion-otel-collector-deployment
+  labels:
+    app: garion-otel-collector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: garion-otel-collector
+  template:
+    metadata:
+      labels:
+        app: garion-otel-collector
+    spec:
+      containers:
+      - name: garion-otel-collector
+        image: otel/opentelemetry-collector-contrib
+        ports:
+        - containerPort: 8080
+        # env:
+        # - name: ASPNETCORE_ENVIRONMENT
+        #   value: Development
+        # - name: db
+        #   value: server=otel-collector-db-service;user id=postgres;database=gariondb;password=password
+        volumeMunts:
+        - name: otel-config-volume
+          mountPath: /etc/otel-collector-config.yaml
+          subPath: otel-collector-config.sql
+      volumes:
+      - name: otel-config-volume
+        configMap:
+          name: otel-config

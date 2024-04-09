@@ -37,17 +37,24 @@ jobs:
         # docker compose up --build -d
     - name: Kubectl down
       run: |
-        kubectl -n garion-1 delete svc blazor-web-db-service
-        kubectl -n garion-1 delete ingress garion-blazor-ingress
-        kubectl -n garion-1 delete deployment blazor-web-db-deployment
-        kubectl -n garion-1 delete deployment garion-blazor-web-deployment
-        kubectl -n garion-1 delete configmap blazor-web-postgres-init
+        kubectl -n garion-1 delete svc blazor-web-db-service || true
+        kubectl -n garion-1 delete ingress garion-blazor-ingress || true
+        kubectl -n garion-1 delete deployment blazor-web-db-deployment || true
+        kubectl -n garion-1 delete deployment garion-blazor-web-deployment || true
+        kubectl -n garion-1 delete configmap blazor-web-postgres-init || true
+        kubectl -n garion-1 delete configmap otel-config || true
+
     - name: Kubectl Up
       run: |
         docker build -t 144.17.92.12:5000/garion-1/blazor-web:1 .
         docker push 144.17.92.12:5000/garion-1/blazor-web:1
-        pwd
+
         kubectl -n garion-1 create configmap blazor-web-postgres-init --from-file=init.sql
+
+        cd kube-configs
+        kubectl -n garion-1 create configmap otel-config --from-file=otel-collector-config.yml
+        cd ..
+
         kubectl apply -f kube/
 
     - uses: actions/checkout@master
