@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: garion-grafana
-        image: 144.17.92.12:5000/garion-1/grafana:1
+        image: grafana/grafana:9.4.7
         ports:
         - containerPort: 3000
         # env:
