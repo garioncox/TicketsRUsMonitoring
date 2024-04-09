@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: garion-1
+  name: garion-blazor-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: grafana.garion-telemetry-ts.duckdns.org
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: garion-blazor-service
+            port:
+              number: 80

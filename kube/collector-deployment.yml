@@ -25,10 +25,10 @@ spec:
         #   value: Development
         # - name: db
         #   value: server=otel-collector-db-service;user id=postgres;database=gariondb;password=password
-        volumeMunts:
+        volumeMounts:
         - name: otel-config-volume
           mountPath: /etc/otel-collector-config.yaml
-          subPath: otel-collector-config.sql
+          subPath: otel-collector-config.yml
       volumes:
       - name: otel-config-volume
         configMap:
