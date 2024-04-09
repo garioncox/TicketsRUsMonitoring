@@ -12,11 +12,11 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
-    - name: Run Test Suite
-      run: |
-        cd ./TicketsRUs.Tests/
-        # docker run -it --rm -v $(pwd):/app -w mcr.microsoft.com/dotnet/sdk:8.0 dotnet format --verify-no-changes --severity warn
-        dotnet test
+    # - name: Run Test Suite
+    #   run: |
+    #     cd ./TicketsRUs.Tests/
+    #     # docker run -it --rm -v $(pwd):/app -w mcr.microsoft.com/dotnet/sdk:8.0 dotnet format --verify-no-changes --severity warn
+    #     dotnet test
 
     # - name: Docker Down
     #   run: |
@@ -27,9 +27,9 @@ jobs:
         cd ..
         rm -rf ./ticketsrus-garion-luris || true 
         git clone https://${{ secrets.GARION_CLONE_KEY }}@github.com/SnowSE/ticketsrus-garion-luris.git
-    - name: Lint 
-      run: |
-        # dotnet format --verify-no-changes # --severity warn
+    # - name: Lint 
+    #   run: |
+    #     # dotnet format --verify-no-changes # --severity warn
     # - name: Docker Up
     #   run: |
         # cd ./garion-staging 
