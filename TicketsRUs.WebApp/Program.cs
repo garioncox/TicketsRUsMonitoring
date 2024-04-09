@@ -33,7 +33,9 @@ builder.Services.AddHealthChecks();
 builder.Services.AddLogging();
 
 const string serviceName = "tickets";
-const string otelEndpoint = "http://otel-collector:4317/";
+// const string otelEndpoint = "http://otel-collector-service:4317/";
+Uri otelEndpoint = new(builder.Configuration["COLLECTOR_URL"] ?? throw new NullReferenceException("environment variable not set: COLLECTOR_URL"));
+
 
 builder.Logging.AddOpenTelemetry(options =>
 {
@@ -41,7 +43,7 @@ builder.Logging.AddOpenTelemetry(options =>
         .SetResourceBuilder(
             ResourceBuilder.CreateDefault().AddService(serviceName))
         .AddOtlpExporter(o =>
-            o.Endpoint = new Uri(otelEndpoint))
+            o.Endpoint = otelEndpoint)
         .AddConsoleExporter();
 });
 
@@ -54,14 +56,14 @@ builder.Services.AddOpenTelemetry()
         .AddAspNetCoreInstrumentation()
         //.AddConsoleExporter()
         .AddOtlpExporter(o =>
-            o.Endpoint = new Uri(otelEndpoint)))
+            o.Endpoint = otelEndpoint))
     .WithMetrics(metrics => metrics
         .AddAspNetCoreInstrumentation()
         .AddMeter(DummyMetrics.Name)
         .AddMeter(Metrics.Name)
         .AddConsoleExporter()
         .AddOtlpExporter(o =>
-            o.Endpoint = new Uri(otelEndpoint)));
+            o.Endpoint = otelEndpoint));
 
 
 
