@@ -20,10 +20,11 @@ spec:
         image: grafana/grafana:9.4.7
         ports:
         - containerPort: 3000
-        # env:
-        # - name: COLLECTOR_URL
-        #   value: http://otel-collector-service:4317/
-        # - name: ASPNETCORE_ENVIRONMENT
-        #   value: Development
-        # - name: db
-        #   value: server=grafana-db-service;user id=postgres;database=gariondb;password=password
+        volumeMounts:
+        - name: datasources
+          mountPath: /etc/grafana/provisioning/datasources/datasource.yml
+          subpath: grafana/provisioning/datasources/grafana-datasource.yml
+      volumes:
+      - name: datasources
+        configmap:
+          name: grafana-datasource-config
