@@ -8,5 +8,9 @@ spec:
   selector:
     app: garion-grafana-web
   ports:
-    - port: 3000
+    - port: 80
       targetPort: 3000
+    - name: GF_SECURITY_ADMIN_USER
+      value: admin
+    - name: GF_SECURITY_ADMIN_PASSWORD
+      value: grafana

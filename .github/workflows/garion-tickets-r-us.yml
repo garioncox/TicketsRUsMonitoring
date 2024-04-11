@@ -43,6 +43,7 @@ jobs:
         kubectl -n garion-1 delete deployment garion-blazor-web-deployment || true
         kubectl -n garion-1 delete configmap blazor-web-postgres-init || true
         kubectl -n garion-1 delete configmap otel-config || true
+        kubectl -n garion-1 delete configmap grafana-datasource-config || true
 
     - name: Kubectl Up
       run: |
@@ -52,7 +53,8 @@ jobs:
         kubectl -n garion-1 create configmap blazor-web-postgres-init --from-file=init.sql
 
         cd kube-configs
-        kubectl -n garion-1 create configmap otel-config --from-file=otel-collector-config.yml
+          kubectl -n garion-1 create configmap otel-config --from-file=otel-collector-config.yml
+          kubectl -n garion-1 create configmap grafana-datasource-config --from-file=grafama/provisioning/datasources/grafana-datasource.yml
         cd ..
 
         kubectl apply -f kube/
