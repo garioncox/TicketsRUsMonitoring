@@ -13,6 +13,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: garion-blazor-service
+            name: garion-grafana-service
             port:
               number: 80

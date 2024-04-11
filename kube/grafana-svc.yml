@@ -6,7 +6,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: garion-grafana-web
+    app: garion-grafana
   ports:
     - port: 80
       targetPort: 3000
