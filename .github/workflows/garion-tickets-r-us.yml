@@ -64,7 +64,7 @@ jobs:
 
         for file in ./kube; do
           echo "Applying $file"
-          kubectul apply -f "$file"
+          cat $file | envsub | kubectl apply -f -
         done
 
     - uses: actions/checkout@master
