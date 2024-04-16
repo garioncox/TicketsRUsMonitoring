@@ -61,10 +61,11 @@ jobs:
         cd ..
 
         kubectl apply -f kube/
-
+        
+        RUN_ID=${{ github.run_id }}
         for file in ./kube; do
           echo "Applying $file"
-          cat $file | envsub | kubectl apply -f -
+          cat $file | envsubst | kubectl apply -f -
         done
 
     - uses: actions/checkout@master
