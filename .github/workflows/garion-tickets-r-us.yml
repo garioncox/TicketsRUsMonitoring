@@ -62,6 +62,11 @@ jobs:
 
         kubectl apply -f kube/
 
+        for file in ./kube; do
+          echo "Applying $file"
+          kubectul apply -f "$file"
+        done
+
     - uses: actions/checkout@master
     - name: Microsoft Teams Notification
       if: success()
