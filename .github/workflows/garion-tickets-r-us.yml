@@ -1,5 +1,7 @@
 name: Garion Runner
-on: [push]
+on: 
+  push:
+    branches: [main]
 jobs:
 
 # pwd /home/garion/actions-runner/_work/ticketsrus-garion-luris/ticketsrus-garion-luris

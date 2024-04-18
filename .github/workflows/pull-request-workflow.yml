@@ -8,3 +8,7 @@ jobs:
     steps:
       - name: Check Out Code
         uses: actions/checkout@v4
+      - name: Deploy Kubernetes Environment
+        run: |
+          export PULL_REQUEST_ID=${{ github.event.pull_request.number}}
+          kubectl create namespace garion-pr-$PULL_REQUEST_ID
