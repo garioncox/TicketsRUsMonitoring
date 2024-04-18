@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: garion-1
+  namespace: ${NAMESPACE}
   name: garion-blazor-web-deployment
   labels:
     app: garion-blazor-web
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: garion-blazor-web
-        image: 144.17.92.12:5000/garion-1/blazor-web:${GITHUB_RUN_ID}
+        image: 144.17.92.12:5000/garion-1/blazor-web:${RUN_SALT}
         ports:
         - containerPort: 8080
         env:
