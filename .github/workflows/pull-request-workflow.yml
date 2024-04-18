@@ -11,4 +11,8 @@ jobs:
       - name: Deploy Kubernetes Environment
         run: |
           export PULL_REQUEST_ID=${{ github.event.pull_request.number}}
-          kubectl create namespace garion-pr-$PULL_REQUEST_ID
+          echo $PULL_REQUEST_ID
+          kubectl create namespace garion-pr-$PULL_REQUEST_ID || true
+
+          kubectl -n $PULL_REQUEST_ID delete configmap blazor-web-postgres-init || true
+          kubectl -n $PULL_REQUEST_ID create configmap blazor-web-postgres-init --from-file=init.sql
