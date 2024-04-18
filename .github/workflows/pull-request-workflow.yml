@@ -1,0 +1,10 @@
+name: Pull Request Environment
+on:
+  pull_request:
+    types: [opened]
+jobs:
+  deploy-to-kubernetes:
+    runs-on: self-hosted
+    steps:
+      - name: Check Out Code
+        uses: actions/checkout@v4
