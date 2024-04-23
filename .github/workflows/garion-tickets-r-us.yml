@@ -37,15 +37,15 @@ jobs:
         # cd ./garion-staging 
 
         # docker compose up --build -d
-    - name: Kubectl down
-      run: |
-        kubectl -n garion-1 delete svc blazor-web-db-service || true
-        kubectl -n garion-1 delete ingress garion-blazor-ingress || true
-        kubectl -n garion-1 delete deployment blazor-web-db-deployment || true
-        kubectl -n garion-1 delete deployment garion-blazor-web-deployment || true
-        kubectl -n garion-1 delete configmap blazor-web-postgres-init || true
-        kubectl -n garion-1 delete configmap otel-config || true
-        kubectl -n garion-1 delete configmap grafana-datasource-config || true
+    # - name: Kubectl down
+    #   run: |
+    #     kubectl -n garion-1 delete svc blazor-web-db-service || true
+    #     kubectl -n garion-1 delete ingress garion-blazor-ingress || true
+    #     kubectl -n garion-1 delete deployment blazor-web-db-deployment || true
+    #     kubectl -n garion-1 delete deployment garion-blazor-web-deployment || true
+    #     kubectl -n garion-1 delete configmap blazor-web-postgres-init || true
+    #     kubectl -n garion-1 delete configmap otel-config || true
+    #     kubectl -n garion-1 delete configmap grafana-datasource-config || true
 
 # env:
 #   value: ${{ secrets.Github_Token}}
@@ -53,6 +53,8 @@ jobs:
     - name: Kubectl Up
       run: |
         export NAMESPACE="garion-pr-$GITHUB_RUN_ID"
+
+        kubectl create namespace $NAMESPACE || true
 
         docker build -t 144.17.92.12:5000/garion-1/blazor-web:$GITHUB_RUN_ID .
         docker push 144.17.92.12:5000/garion-1/blazor-web:$GITHUB_RUN_ID
