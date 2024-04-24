@@ -19,7 +19,7 @@ spec:
       - name: garion-otel-collector
         image: otel/opentelemetry-collector-contrib
         ports:
-        - containerPort: 8080
+        - containerPort: 4317
         # env:
         # - name: ASPNETCORE_ENVIRONMENT
         #   value: Development
