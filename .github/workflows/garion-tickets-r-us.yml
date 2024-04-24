@@ -54,6 +54,9 @@ jobs:
       run: |
         export NAMESPACE="garion-pr-$GITHUB_RUN_ID"
 
+        echo run id: $GITHUB_RUN_ID
+        echo namespace: $NAMESPACE
+
         kubectl create namespace $NAMESPACE || true
 
         docker build -t 144.17.92.12:5000/garion-1/blazor-web:$GITHUB_RUN_ID .
