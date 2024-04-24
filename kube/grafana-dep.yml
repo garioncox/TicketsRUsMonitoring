@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: garion-1
+  namespace: garion-1/
   name: garion-grafana-deployment
   labels:
     app: garion-grafana

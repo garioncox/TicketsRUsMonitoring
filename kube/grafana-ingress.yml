@@ -16,3 +16,13 @@ spec:
             name: garion-grafana-service
             port:
               number: 3000
+  - host: grafana.garion-kube.duckdns.org
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: garion-grafana-service
+            port:
+              number: 3000
