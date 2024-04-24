@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: garion-1
+  namespace: ${NAMESPACE}
   name: garion-loki-deployment
   labels:
     app: garion-loki
