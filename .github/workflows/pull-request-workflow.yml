@@ -14,6 +14,8 @@ jobs:
           echo $PULL_REQUEST_ID
           export RUN_SALT="pr-$PULL_REQUEST_ID-${GITHUB_RUN_ID}"
           export NAMESPACE="garion-pr-$PULL_REQUEST_ID"
+
+          export SUBDOMAIN=$PULL_REQUEST_ID
           
           kubectl create namespace NAMESPACE || true
 

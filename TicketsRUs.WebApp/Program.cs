@@ -61,7 +61,7 @@ builder.Services.AddOpenTelemetry()
         .AddAspNetCoreInstrumentation()
         .AddMeter(DummyMetrics.Name)
         .AddMeter(Metrics.Name)
-        .AddConsoleExporter()
+        // .AddConsoleExporter()
         .AddOtlpExporter(o =>
             o.Endpoint = otelEndpoint));
 

@@ -56,6 +56,7 @@ jobs:
 
         echo run id: $GITHUB_RUN_ID
         echo namespace: $NAMESPACE
+        export SUBDOMAIN="1"
 
         kubectl create namespace $NAMESPACE || true
 

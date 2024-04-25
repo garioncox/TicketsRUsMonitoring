@@ -8,11 +8,11 @@ metadata:
 spec:
   tls:  
   - hosts:
-    - ${GITHUB_RUN_ID}.garion-telemetry-ts.duckdns.org
-    secretName: garion-kube-tls-production
+    - ${SUBDOMAIN}.garion-telemetry-ts.duckdns.org
+    secretName: garion-kube-tls-production-${SUBDOMAIN}
   ingressClassName: nginx
   rules:
-  - host: ${GITHUB_RUN_ID}.garion-telemetry-ts.duckdns.org
+  - host: ${SUBDOMAIN}.garion-telemetry-ts.duckdns.org
     http:
       paths:
       - path: /
@@ -33,11 +33,11 @@ metadata:
 spec:
   tls:  
   - hosts:
-    - ${GITHUB_RUN_ID}.garion-kube.duckdns.org
-    secretName: garion-kube-tls-production
+    - ${SUBDOMAIN}.garion-kube.duckdns.org
+    secretName: garion-kube-ts-tls-production-${SUBDOMAIN}
   ingressClassName: nginx
   rules:
-  - host: ${GITHUB_RUN_ID}.garion-kube.duckdns.org
+  - host: ${SUBDOMAIN}.garion-kube.duckdns.org
     http:
       paths:
       - path: /
