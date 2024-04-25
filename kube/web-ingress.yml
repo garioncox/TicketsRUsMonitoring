@@ -7,9 +7,9 @@ metadata:
     cert-manager.io/cluster-issuer: cert-manager-webhook-duckdns-garion-production
 spec:
   tls:  
-  - hosts:    
-  - ${GITHUB_RUN_ID}.garion-telemetry-ts.duckdns.org
-  secretName: garion-kube-tls-production
+  - hosts:
+    - ${GITHUB_RUN_ID}.garion-telemetry-ts.duckdns.org
+    secretName: garion-kube-tls-production
   ingressClassName: nginx
   rules:
   - host: ${GITHUB_RUN_ID}.garion-telemetry-ts.duckdns.org
@@ -32,9 +32,9 @@ metadata:
     cert-manager.io/cluster-issuer: cert-manager-webhook-duckdns-garion-production
 spec:
   tls:  
-  - hosts:    
-  - ${GITHUB_RUN_ID}.garion-kube.duckdns.org
-  secretName: garion-kube-tls-production
+  - hosts:
+    - ${GITHUB_RUN_ID}.garion-kube.duckdns.org
+    secretName: garion-kube-tls-production
   ingressClassName: nginx
   rules:
   - host: ${GITHUB_RUN_ID}.garion-kube.duckdns.org
